@@ -45,11 +45,9 @@
 
 
     @if (session('success'))
-
-    <div class="alert alert-primary">
-    {{session('success')}}
-    </div>
-    
+        <div class="alert alert-primary">
+            {{ session('success') }}
+        </div>
     @endif
 
     @if (session('error'))
@@ -74,7 +72,7 @@
             <p style="font-size: 15px; background-color: #F7E0B9; padding: 10px;" align="center">You must log in to
                 continue</p>
         </div>
-        <form action="loginKaro" method="post" enctype="multipart/form-data">
+        <form action="{{ route('login.method') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div style="padding-left: 30px;">
@@ -84,10 +82,7 @@
 
             <div class="error-message">
                 @if ($errors->has('username'))
-
-
-                    {{$errors->first('username')}}
-
+                    {{ $errors->first('username') }}
                 @endif
 
             </div>
@@ -99,21 +94,15 @@
 
             <div class="error-message">
                 @if ($errors->has('password'))
-
-
-                    {{$errors->first('password')}}
-
+                    {{ $errors->first('password') }}
                 @endif
 
                 @if ($errors->has('login'))
-
-
-                    {{$errors->first('login')}}
-
+                    {{ $errors->first('login') }}
                 @endif
 
 
-                
+
             </div>
             <div style="padding-left: 30px;">
                 <input type="submit" value="Login" name="submit"
@@ -121,7 +110,7 @@
             </div>
         </form>
         <br>
-        <a href="{{URL::to('/forgot')}}"><span style="color: blue;">Forgot Account?</span></a>
+        <a href="{{ URL::to('/forgot') }}"><span style="color: blue;">Forgot Account?</span></a>
         <hr>
         <span>Don't have an account? <button class=" border-0 text-white"
                 style="background-color:green; padding:5px 10px;border-radius:10px;" data-toggle="modal"
@@ -146,7 +135,7 @@
                             style="font-size:20px;font-weight:lighter;">To connect the world!!</span></h5>
 
                 </div>
-                <form action="{{ url('register') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('register.method') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div style="padding-left: 30px;">
@@ -176,7 +165,8 @@
 
                         <div class="col-6">
                             <div>
-                                <input type="text" value="{{ old('surname1') }}" placeholder="Surname" name="surname1"
+                                <input type="text" value="{{ old('surname1') }}" placeholder="Surname"
+                                    name="surname1"
                                     style="width:98%; border: 1px solid #C6C4C2; padding: 5px; border-radius: 10px; background-color: #F9F2F1">
                             </div>
                             <div class="error-message">
@@ -187,34 +177,26 @@
                         </div>
                     </div>
 
-                    <p style="font-size:smaller">Date of birth</p>
 
                     <div class="row">
-                        <div class="col-4">
-                            <input type="number" value="{{ old('day') }}" name="day" placeholder="day"
-                                style="width:80px">
+                        <div class="col-lg-5 col-12">
+                            <p style="font-size:smaller">Date of birth</p>
+
+                            <input type="date" name="dob"
+                                style="width:98%; border: 1px solid #C6C4C2; padding: 5px; border-radius: 10px; background-color: #F9F2F1"
+                                class="form-control" id="">
                             <div class="error-message">
-                                @error('day')
+                                @error('dob')
                                     {{ $message }}
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="col-4">
-                            <input type="number" value="{{ old('month') }}" name="month" placeholder="month"
-                                style="width:80px">
+                        <div class="col-lg-7 col-12">
+                            <p style="font-size:smaller">Profile Picture:</p>
+                            <input type="file" name="profile_picture">
                             <div class="error-message">
-                                @error('month')
-                                    {{ $message }}
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <input type="number" value="{{ old('year') }}" name="year" placeholder="year"
-                                style="width:80px">
-                            <div class="error-message">
-                                @error('year')
+                                @error('profile_picture')
                                     {{ $message }}
                                 @enderror
                             </div>
@@ -226,13 +208,16 @@
 
                     <div class="row">
                         <div class="col-5 col-sm-4">
-                            Male&nbsp;&nbsp;<input type="radio" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
+                            Male&nbsp;&nbsp;<input type="radio" name="gender" value="male"
+                                {{ old('gender') == 'male' ? 'checked' : '' }}>
                         </div>
                         <div class="col-6 col-sm-4">
-                            Female&nbsp;&nbsp;<input type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
+                            Female&nbsp;&nbsp;<input type="radio" name="gender" value="female"
+                                {{ old('gender') == 'female' ? 'checked' : '' }}>
                         </div>
                         <div class="col-6 col-sm-4">
-                            Other&nbsp;&nbsp;<input type="radio" name="gender" value="other" {{ old('gender') == 'other' ? 'checked' : '' }}>
+                            Other&nbsp;&nbsp;<input type="radio" name="gender" value="other"
+                                {{ old('gender') == 'other' ? 'checked' : '' }}>
                         </div>
                         <div class="error-message">
                             @error('gender')
@@ -246,13 +231,17 @@
 
                     <div class="row">
                         <div class="col-5 col-sm-4">
-                            <input type="checkbox" name="hobbies[]" value="games" id="games" {{ in_array('games', old('hobbies', [])) ? 'checked' : '' }}> Games
+                            <input type="checkbox" name="hobbies[]" value="games" id="games"
+                                {{ in_array('games', old('hobbies', [])) ? 'checked' : '' }}> Games
                         </div>
                         <div class="col-5 col-sm-4">
-                            <input type="checkbox" name="hobbies[]" value="dancingsinging" id="dancingsinging" {{ in_array('dancingsinging', old('hobbies', [])) ? 'checked' : '' }}> Dancing & Singing
+                            <input type="checkbox" name="hobbies[]" value="dancingsinging" id="dancingsinging"
+                                {{ in_array('dancingsinging', old('hobbies', [])) ? 'checked' : '' }}> Dancing &
+                            Singing
                         </div>
                         <div class="col-5 col-sm-4">
-                            <input type="checkbox" name="hobbies[]" value="other" id="other" {{ in_array('other', old('hobbies', [])) ? 'checked' : '' }}> Other
+                            <input type="checkbox" name="hobbies[]" value="other" id="other"
+                                {{ in_array('other', old('hobbies', [])) ? 'checked' : '' }}> Other
                         </div>
                     </div>
                     <div class="error-message">
@@ -261,13 +250,7 @@
                         @enderror
                     </div>
 
-                    <p style="font-size:smaller">Profile Picture:</p>
-                    <input type="file" name="profile_picture">
-                    <div class="error-message">
-                        @error('profile_picture')
-                            {{ $message }}
-                        @enderror
-                    </div>
+
                     <br>
                     <div style="padding-left: 30px;" class="my-3">
                         <input type="password" placeholder="Create new Password" value="{{ old('newpassword') }}"
@@ -299,9 +282,16 @@
         </div>
     </div>
 
-    @if ($errors->has('username1') || $errors->has('newpassword') || $errors->has('confirmpassword') || $errors->has('first_name') || $errors->has('surname') || $errors->has('gender') || $errors->has('day') || $errors->has('month') || $errors->has('year'))
+    @if (
+        $errors->has('username1') ||
+            $errors->has('newpassword') ||
+            $errors->has('confirmpassword') ||
+            $errors->has('first_name') ||
+            $errors->has('surname') ||
+            $errors->has('gender') ||
+            $errors->has('dob'))
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
                 myModal.show();
             });

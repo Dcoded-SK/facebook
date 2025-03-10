@@ -122,7 +122,7 @@
             <a href="/friends" style="text-decoration:none;color:black">
                 <div class="row">
                     <div class="col-3">
-                        <img src="{{URL::to('/')}}/images/" alt="Profile Picture">
+                        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Profile Picture">
                     </div>
                     <div class="col-8">
 
@@ -159,7 +159,7 @@
     <div class="section">
         <h2>Birthdays</h2>
         <div class="birthday">
-            <img src="{{URL::to('/')}}/images/logos/giftbox.png"
+            <img src="{{ URL::to('/') }}/images/logos/giftbox.png"
                 style="border-radius: 10%;width: 40px;height: 40px; margin-right: 10px;" alt="Profile Picture">
             <span><span style="font-size:larger">Sagar Prajapati</span> and 5 others have birthdays today.</span>
         </div>
@@ -169,7 +169,7 @@
     <div class="section contacts-section">
         <h2>Contacts</h2>
         <div class="contact">
-            <img src="{{URL::to('/')}}/images/default.png" alt="Profile Picture">
+            <img src="{{ URL::to('/') }}/images/default.png" alt="Profile Picture">
             <span>Mike Smith</span>
             <div class="online-indicator"></div>
         </div>
@@ -180,7 +180,7 @@
     <div class="section contacts-section">
         <h2>Group Conversations</h2>
         <div class="contact">
-            <img src="{{URL::to('/')}}/images/default.png" alt="Profile Picture">
+            <img src="{{ URL::to('/') }}/images/default.png" alt="Profile Picture">
             <span>Mike Smith</span>
             <div class="online-indicator"></div>
         </div>

@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body style="background-color:#E4ECFB">
 
     <!-- Include the navbar -->
     @include('afterlogin.layout.includes.navbar')
@@ -26,26 +26,43 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Left side content -->
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 @include('afterlogin.layout.includes.left_side')
             </div>
 
             <!-- Main content -->
-            <div class="col-lg-6">
-                @yield("content")
+            <div class="col-lg-8">
+
+                @if (session('success'))
+                    <div class="alert alert-primary">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @yield('content')
             </div>
 
             <!-- Right side content -->
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 @include('afterlogin.layout.includes.right_side')
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS (Already included in the head section) -->
+    <!-- Include Scripts Before Closing Body -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha384-UG8ao2jwOWB7/oDdObZc6ItJmwUkR/PfMyt9Qs5AwX7PsnYn1CRKCTWyncPTWvaS" crossorigin="anonymous">
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
 
     @stack('scripts')
 </body>
