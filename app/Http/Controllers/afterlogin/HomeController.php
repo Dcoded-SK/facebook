@@ -13,7 +13,13 @@ class HomeController extends Controller
 
     public function home()
     {
-        $posts = Post::with(['getReaction', 'getComment', 'getUser'])
+        $posts = Post::with([
+            'getReaction',
+            'getComment' => function ($q) {
+                $q->orderBy('id', 'desc');
+            },
+            'getUser'
+        ])
             ->withCount(['getReaction', 'getComment'])
 
             ->get();
