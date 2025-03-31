@@ -274,13 +274,15 @@
 
         <div class="posts">
             @foreach ($posts as $post)
+
+
                     <div class="post">
                         <!-- Post header -->
                         <div class="post-header">
                             <img class="img-fluid" src="{{ asset('storage/' . $post->getUser->profile_picture) }}"
                                 alt="Profile Picture">
                             <p><span style="margin-right:15px; font-weight:bold;"></span>
-                                is Feeling happy with Tilakram and 6 others at RK University, Gujarat</p>
+                                is Feeling happy with and 6 others at RK University, Gujarat</p>
                         </div>
 
                         <!-- Post content -->
@@ -297,7 +299,7 @@
                         <?php
                 $userReaction = $post->getReaction->where('user_id', auth()->user()->id)->first(); // Get the user's reaction (if any)
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ?>
                         <!-- Post footer -->
                         <div class="post-footer">
 
@@ -344,8 +346,7 @@
                                     onclick="showCommentator({{ $post->id }})">Cancel</button>
                             </div>
                         </div>
-                        <div class="TotalComment-{{ $post->id }}">{{ $post->getComment->count() }} comments</div>
-
+                        <div class="TotalComment-{{ $post->id }}">{{ $post->get_comment_count }} comments</div>
                         <hr>
                         <div class="comments-{{ $post->id }}" style="overflow-y:auto; max-height:150px; margin-top:20px;">
 
@@ -357,7 +358,9 @@
                                         <p><span id="commentor"
                                                 style="margin-right:15px; font-weight:bold;">{{ $comment->getUser->first_name }}</span>
                                     </a>
-                                    <span id="comment">{{ $comment->comment }}</span>
+                                    <span id="comment">{{ $comment->comment }}
+                                    </span>
+                                    <p style="font-size:15px;">{{ $comment->created_at->format('d-M-Y') }}</p>
                                     <hr>
                                 @endforeach
                             @endif
@@ -564,11 +567,11 @@
                         // Append the new comment dynamically
                         $(".comments-" + response.comment.post_id).prepend(
                             `  <a href="friend_profile-${response.comment.user_id}" style="text-decoration: none;">
-                                                                <p><span id="commentor"
-                                                                        style="margin-right:15px; font-weight:bold;">${response.comment.user_name}</span>
-                                                            </a>
-                                                            <span id="comment">${response.comment.comment}</span>
-                                                            <hr>`
+                                                                                                                    <p><span id="commentor"
+                                                                                                                            style="margin-right:15px; font-weight:bold;">${response.comment.user_name}</span>
+                                                                                                                </a>
+                                                                                                                <span id="comment">${response.comment.comment}</span>
+                                                                                                                <hr>`
                         );
 
                         showCommentator(response.comment.post_id);
