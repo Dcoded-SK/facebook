@@ -9,4 +9,6 @@ Route::prefix("post")->name('post.')->group(function () {
     Route::put('/{post}', [PostController::class, 'update'])->name('update');
     Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
     Route::Post('/reaction', [PostController::class, 'setReaction'])->name('reaction');
+
+
 });

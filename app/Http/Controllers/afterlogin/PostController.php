@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\afterlogin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Reaction;
 use Illuminate\Http\Request;
@@ -67,5 +68,38 @@ class PostController extends Controller
         }
 
         return response()->json(['success' => 'Reaction saved successfully', 'reaction' => $request->reaction, 'reactCount' => $reactCount]);
+    }
+
+
+    // to handle with comments using api
+
+    public function setComment(Request $request)
+    {
+
+
+        $request->validate([
+            'comment' => 'required',
+        ]);
+
+        $comment = Comment::create([
+            'user_id' => auth()->user()->id,
+            'post_id' => $request->postId,
+            'comment' => $request->comment,
+        ]);
+
+        if ($comment) {
+            return response()->json([
+                'success' => 'Comment saved successfully',
+                'comment' => [
+                    'id' => $comment->id,
+                    'post_id' => $comment->post_id,
+                    'comment' => $comment->comment,
+                    'user_name' => auth()->user()->first_name,
+                    'user_id' => auth()->user()->id,
+                ],
+                'total_comments' => Comment::where('post_id', $comment->post_id)->count(), // Count only the specific post's comments
+            ]);
+        }
+
     }
 }
