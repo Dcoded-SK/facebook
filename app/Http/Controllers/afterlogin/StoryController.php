@@ -23,13 +23,13 @@ class StoryController extends Controller
         }
 
         if ($story) {
-            Story::create([
+            $story = Story::create([
                 'story' => $story
             ]);
 
         }
 
-        return redirect()->route('afterlogin.home');
+        return response()->json(['data' => $story]);
 
 
     }

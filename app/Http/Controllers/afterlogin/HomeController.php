@@ -5,6 +5,7 @@ namespace App\Http\Controllers\afterlogin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Reaction;
+use App\Models\Story;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +25,12 @@ class HomeController extends Controller
 
             ->get();
 
-        $reactions = Reaction::with('getUser')->get();
-        return view('afterlogin.home', compact('posts'));
+        $stories = Story::orderBy('created_at', 'desc')->get();
+
+
+
+
+
+        return view('afterlogin.home', compact('posts', 'stories'));
     }
 }

@@ -213,28 +213,15 @@ Home page
 
         <!-- stories section -->
 
+        @foreach ($stories as $story)
 
         <div class="story col-3 bg-secondary"
-            style="background-image:url('{{ URL::to('/') }}/images/');background-size:200px">
-            <a href="viewStori"><img src="{{ URL::to('/') }}/images/" alt="Story 2">
-                <span style="font-weight:bold;color:white">ashish kohar</span></a>
-        </div>
-        <div class="story col-3 bg-secondary"
-            style="background-image:url('{{ URL::to('/') }}/images/');background-size:200px">
-            <a href="viewStori"><img src="{{ URL::to('/') }}/images/" alt="Story 2">
-                <span style="font-weight:bold;color:white">ashish kohar</span></a>
-        </div>
-        <div class="story col-3 bg-secondary"
-            style="background-image:url('{{ URL::to('/') }}/images/');background-size:200px">
-            <a href="viewStori"><img src="{{ URL::to('/') }}/images/" alt="Story 2">
-                <span style="font-weight:bold;color:white">ashish kohar</span></a>
-        </div>
-        <div class="story col-3 bg-secondary"
-            style="background-image:url('{{ URL::to('/') }}/images/');background-size:200px">
-            <a href="viewStori"><img src="{{ URL::to('/') }}/images/" alt="Story 2">
+            style="background-image:url('{{ asset('storage/' . $story->story) }}');background-size:200px">
+            <a href="viewStori"><img src="{{ asset('storage/profiles/defaultuser.jpg')}}" alt="Story 2">
                 <span style="font-weight:bold;color:white">ashish kohar</span></a>
         </div>
 
+        @endforeach
 
 
     </div>
@@ -297,7 +284,7 @@ Home page
             <?php
                 $userReaction = $post->getReaction->where('user_id', auth()->user()->id)->first(); // Get the user's reaction (if any)
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ?>
             <!-- Post footer -->
             <div class="post-footer">
 
@@ -410,7 +397,7 @@ Home page
 
                     <div class="image-fluid" style="width:100%;height:400px;"></div> <!-- Div for image preview -->
 
-                    <input type="file" name="content" id="imageInput" onchange="previewImage(event)">
+                    <input type="file" name="content" class="imageInput">
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">POST</button>
@@ -434,15 +421,15 @@ Home page
 
             </div>
             <div class="modal-body">
-                <form action="{{ route('story.create') }}" method="post" enctype="multipart/form-data">
+                <form action="" method="post" id="story_form" enctype="multipart/form-data">
                     @csrf
 
                     <div class="image-fluid1" style="width:90%;height:300px;"></div> <!-- Div for image preview -->
 
-                    <input type="file" required name="story" id="imageInput1" accept="image/*">
+                    <input type="file" required name="story" id="imageInput" accept="image/*">
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">ADD</button>
+                        <button type="submit" id="add_story" class="btn btn-primary">ADD</button>
                     </div>
                 </form>
             </div>
@@ -555,11 +542,11 @@ jQuery(document).ready(function() {
                 // Append the new comment dynamically
                 $(".comments-" + response.comment.post_id).prepend(
                     `  <a href="friend_profile-${response.comment.user_id}" style="text-decoration: none;">
-                                                                                                                                                                        <p><span id="commentor"
-                                                                                                                                                                                style="margin-right:15px; font-weight:bold;">${response.comment.user_name}</span>
-                                                                                                                                                                    </a>
-                                                                                                                                                                    <span id="comment">${response.comment.comment}</span>
-                                                                                                                                                                    <hr>`
+                                                                                                                                                                                                                                                    <p><span id="commentor"
+                                                                                                                                                                                                                                                            style="margin-right:15px; font-weight:bold;">${response.comment.user_name}</span>
+                                                                                                                                                                                                                                                </a>
+                                                                                                                                                                                                                                                <span id="comment">${response.comment.comment}</span>
+                                                                                                                                                                                                                                                <hr>`
                 );
 
                 showCommentator(response.comment.post_id);
@@ -571,7 +558,64 @@ jQuery(document).ready(function() {
         })
     });
 
+
+    // story functionality
+
+    $("#add_story").click(function(e) {
+        e.preventDefault();
+
+        let form = document.getElementById("story_form");
+        let formData = new FormData(form);
+
+        $.ajax({
+            url: "{{ route('story.create') }}", // Replace with your actual route
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // handle success response (e.g., close modal, show message)
+                $("#storyModal").modal('hide');
+                Window.reload();
+                // Optionally reload or update the story section
+            },
+            error: function(xhr) {
+                // handle error
+                alert("Something went wrong. Please try again.");
+            }
+        });
+    });
+
 });
+
+// For Post Modal image preview
+$(".imageInput").change(function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            $(".image-fluid").html(
+                `<img src="${e.target.result}" class="img-fluid" style="width:100%; height:100%; object-fit:cover;" />`
+            );
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+// For Story Modal image preview
+$("#imageInput").change(function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            $(".image-fluid1").html(
+                `<img src="${e.target.result}" class="img-fluid" style="width:100%; height:100%; object-fit:cover;" />`
+            );
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
 
 
 function showCommentator(id) {
