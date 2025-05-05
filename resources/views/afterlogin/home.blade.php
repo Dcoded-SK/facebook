@@ -297,7 +297,7 @@ Home page
             <?php
                 $userReaction = $post->getReaction->where('user_id', auth()->user()->id)->first(); // Get the user's reaction (if any)
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ?>
             <!-- Post footer -->
             <div class="post-footer">
 
@@ -411,11 +411,6 @@ Home page
                     <div class="image-fluid" style="width:100%;height:400px;"></div> <!-- Div for image preview -->
 
                     <input type="file" name="content" id="imageInput" onchange="previewImage(event)">
-                    <hr>
-                    <h5>Who can see your post?</h5>
-                    <input type="radio" name="visibility" value="public"> Anyone <br>
-                    <input type="radio" name="visibility" value="private"> Private <br>
-                    <input type="radio" name="visibility" value="friends"> Friends <br>
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">POST</button>
@@ -439,17 +434,12 @@ Home page
 
             </div>
             <div class="modal-body">
-                <form action="/story" method="post" enctype="multipart/form-data">
+                <form action="{{ route('story.create') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="image-fluid1" style="width:90%;height:300px;"></div> <!-- Div for image preview -->
 
-                    <input type="file" name="story" id="imageInput1" onchange="previewImage(event)">
-                    <hr>
-                    <h5>Who can see your story?</h5>
-                    <input type="radio" name="visibility" value="public"> Anyone <br>
-                    <input type="radio" name="visibility" value="private"> Private <br>
-                    <input type="radio" name="visibility" value="friends"> Friends <br>
+                    <input type="file" required name="story" id="imageInput1" accept="image/*">
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">ADD</button>
@@ -565,11 +555,11 @@ jQuery(document).ready(function() {
                 // Append the new comment dynamically
                 $(".comments-" + response.comment.post_id).prepend(
                     `  <a href="friend_profile-${response.comment.user_id}" style="text-decoration: none;">
-                                                                                                                    <p><span id="commentor"
-                                                                                                                            style="margin-right:15px; font-weight:bold;">${response.comment.user_name}</span>
-                                                                                                                </a>
-                                                                                                                <span id="comment">${response.comment.comment}</span>
-                                                                                                                <hr>`
+                                                                                                                                                                        <p><span id="commentor"
+                                                                                                                                                                                style="margin-right:15px; font-weight:bold;">${response.comment.user_name}</span>
+                                                                                                                                                                    </a>
+                                                                                                                                                                    <span id="comment">${response.comment.comment}</span>
+                                                                                                                                                                    <hr>`
                 );
 
                 showCommentator(response.comment.post_id);

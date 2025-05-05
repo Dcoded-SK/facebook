@@ -31,7 +31,7 @@ class PostController extends Controller
             'situation' => $request->situation,
             'content' => $content,
             'caption' => $request->caption,
-            'visibility' => $request->visibility,
+            'visibility' => 'public',
         ]);
 
         return back()->with('success', 'Post created successfully');
