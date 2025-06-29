@@ -71,15 +71,7 @@
 <div class="sidebar">
     <div class="nav flex-column">
         <!-- Profile section -->
-        <div class="nav-item">
-            <a href="/profile" class="d-flex align-items-center">
-                <img src="{{ auth()->user()->profile_picture ? asset('storage/' . auth()->user()->profile_picture) : asset('storage/profiles/defaultuser.jpg') }}"
-                    alt="Profile Picture" style="width: 40px; border-radius:20px">
-                <span>&nbsp;{{ auth()->user()->first_name }} &nbsp; {{ auth()->user()->last_name }}</span>
-            </a>
 
-
-        </div>
         <!-- Navigation links -->
         <div class="nav-item">
             <a href="#"><i class="fas fa-home"></i> Home</a>
@@ -110,8 +102,8 @@
 
 <!-- JavaScript to auto-hide the messages after 5 seconds -->
 <script>
-    window.onload = function() {
-        setTimeout(function() {
+    window.onload = function () {
+        setTimeout(function () {
             var successMessage = document.getElementById('successMessage');
             var errorMessage = document.getElementById('errorMessage');
 

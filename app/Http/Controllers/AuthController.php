@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use function PHPUnit\Framework\returnArgument;
 
 class AuthController extends Controller
 {
@@ -72,5 +73,12 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->route('afterlogin.home')->with('success', 'Registration successful!');
         }
+    }
+
+
+    public function logoutMethod()
+    {
+        Auth::logout();
+        return redirect()->back();
     }
 }

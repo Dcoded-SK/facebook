@@ -10,9 +10,10 @@ Route::prefix("api")->name("api.")->group(function () {
 
 
 
-});
+})->middleware('CheckLogin');
 
 Route::prefix('story')->name('story.')->group(function () {
 
     Route::post('create', [StoryController::class, 'create'])->name('create');
-});
+    Route::get('view-{id}', [StoryController::class, 'view'])->name('view');
+})->middleware('CheckLogin');

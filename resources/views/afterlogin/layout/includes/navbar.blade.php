@@ -1,168 +1,168 @@
 <style>
-/* Navbar styling */
-/* Navbar Styling */
-.navbar {
-    background-color: #fff;
-    color: black;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-/* Navbar brand and link styling */
-.navbar-brand,
-.nav-link,
-.form-control {
-    color: #6D7073 !important;
-}
-
-/* Navbar brand specific styling */
-.navbar-brand {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* Search input field color */
-.form-control {
-    color: green;
-}
-
-/* Navigation icons size */
-.nav-icon {
-    font-size: 25px;
-    margin: 10px;
-}
-
-/* Profile picture styling */
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-/* Justify content between for navbar collapse */
-.navbar-collapse {
-    justify-content: space-between;
-}
-
-/* Styling for search input group */
-.input-group .form-outline {
-    background-color: #E6EEF7;
-    border-radius: 20px;
-    width: 100%;
-}
-
-/* Remove dropdown arrow for profile picture */
-.di::after {
-    display: none;
-}
-
-/* Notification container */
-.notification {
-    position: relative;
-    display: inline-block;
-}
-
-/* Bell icon styling */
-.notification .nav-link {
-    position: relative;
-    font-size: 30px;
-    /* Adjust icon size */
-    color: #000;
-    /* Change icon color if needed */
-}
-
-/* Notification badge */
-.notification .badge {
-    position: absolute;
-    top: -5px;
-    /* Adjust position to align with the icon */
-    right: -5px;
-    /* Adjust position */
-    padding: 5px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    min-width: 18px;
-    min-height: 18px;
-    text-align: center;
-    line-height: 14px;
-    font-weight: bold;
-}
-
-/* Dropdown menu styling */
-.dropdown-menu,
-.comments {
-    width: 300px;
-    max-height: 400px;
-    overflow: hidden;
-}
-
-/* Hide scrollbar for comments */
-.comments::-webkit-scrollbar {
-    display: none;
-}
-
-/* Ensure dropdown item text wraps correctly */
-.dropdown-item {
-    white-space: normal;
-}
-
-/* Search bar styles */
-.input-group {
-    width: 300px;
-    height: 40px;
-}
-
-.input-group .form-outline {
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    border-radius: 20px;
-}
-
-.input-group .form-control {
-    border: none;
-    background-color: #E6EEF7;
-    border-radius: 20px;
-}
-
-/* Navbar icons */
-.nav-link {
-    margin: 0 10px;
-}
-
-/* Logo styling */
-#logo {
-    font-size: 30px;
-    font-weight: 700;
-    color: #6D7073;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .navbar-collapse {
-        text-align: center;
-    }
-
-    .col-md-4 {
+    /* Navbar styling */
+    /* Navbar Styling */
+    .navbar {
+        background-color: #fff;
+        color: black;
+        position: fixed;
         width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
+        top: 0;
+        z-index: 1000;
     }
 
-    .profile-pic {
-        width: 35px;
-        height: 35px;
+    /* Navbar brand and link styling */
+    .navbar-brand,
+    .nav-link,
+    .form-control {
+        color: #6D7073 !important;
     }
 
+    /* Navbar brand specific styling */
+    .navbar-brand {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    /* Search input field color */
+    .form-control {
+        color: green;
+    }
+
+    /* Navigation icons size */
     .nav-icon {
-        font-size: 22px;
+        font-size: 25px;
+        margin: 10px;
     }
-}
+
+    /* Profile picture styling */
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    /* Justify content between for navbar collapse */
+    .navbar-collapse {
+        justify-content: space-between;
+    }
+
+    /* Styling for search input group */
+    .input-group .form-outline {
+        background-color: #E6EEF7;
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    /* Remove dropdown arrow for profile picture */
+    .di::after {
+        display: none;
+    }
+
+    /* Notification container */
+    .notification {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Bell icon styling */
+    .notification .nav-link {
+        position: relative;
+        font-size: 30px;
+        /* Adjust icon size */
+        color: #000;
+        /* Change icon color if needed */
+    }
+
+    /* Notification badge */
+    .notification .badge {
+        position: absolute;
+        top: -5px;
+        /* Adjust position to align with the icon */
+        right: -5px;
+        /* Adjust position */
+        padding: 5px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        min-width: 18px;
+        min-height: 18px;
+        text-align: center;
+        line-height: 14px;
+        font-weight: bold;
+    }
+
+    /* Dropdown menu styling */
+    .dropdown-menu,
+    .comments {
+        width: 300px;
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    /* Hide scrollbar for comments */
+    .comments::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Ensure dropdown item text wraps correctly */
+    .dropdown-item {
+        white-space: normal;
+    }
+
+    /* Search bar styles */
+    .input-group {
+        width: 300px;
+        height: 40px;
+    }
+
+    .input-group .form-outline {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        border-radius: 20px;
+    }
+
+    .input-group .form-control {
+        border: none;
+        background-color: #E6EEF7;
+        border-radius: 20px;
+    }
+
+    /* Navbar icons */
+    .nav-link {
+        margin: 0 10px;
+    }
+
+    /* Logo styling */
+    #logo {
+        font-size: 30px;
+        font-weight: 700;
+        color: #6D7073;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .navbar-collapse {
+            text-align: center;
+        }
+
+        .col-md-4 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .profile-pic {
+            width: 35px;
+            height: 35px;
+        }
+
+        .nav-icon {
+            font-size: 22px;
+        }
+    }
 </style>
 
 
@@ -214,17 +214,34 @@
             <div class="col-md-4 d-flex justify-content-end align-items-center">
                 <!-- Profile Dropdown -->
                 <div class="dropdown mx-2">
-                    <a class="nav-link dropdown-toggle di" href="{{ URL::to('/') }}/profile" id="navbarDropdown"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ auth()->user()->profile_picture ? asset('storage/' . auth()->user()->profile_picture) : asset('storage/profiles/defaultuser.jpg') }}"
-                            alt="Profile Picture" style="width: 40px;border-radius:50%;height:40px;">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- Simplified aria attributes for BS5 -->
 
+                        <!-- Profile picture with better error handling -->
+                        <img src="{{ Auth::user()->profile_picture ? asset('storage/profiles/' . Auth::user()->profile_picture) : asset('storage/profiles/defaultuser.svg') }}"
+                            alt="{{ Auth::user()->name }}'s Profile Picture" class="rounded-circle"
+                            style="width: 40px; height: 40px; object-fit: cover; border: 2px solid #fff;"
+                            onerror="this.onerror=null;this.src='{{ asset('storage/profiles/defaultuser.svg') }}'">
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right i" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/profile">Profile</a>
-                        <a class="dropdown-item" href="#">Settings</a>
+
+                    <!-- Dropdown menu with better accessibility -->
+                    <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" ">
+                            <i class=" fas fa-user me-2"></i> Profile
+                        </a>
+                        <a class="dropdown-item">
+                            <i class="fas fa-cog me-2"></i> Settings
+                        </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/logout">Logout</a>
+
+                        <!-- Logout form for security -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            </button>
+                        </form>
                     </div>
                 </div>
 
@@ -267,15 +284,15 @@
 
 
 <script>
-// Hide the search icon and logo when the search input is focused
-function remove() {
-    document.getElementById('searchicon').style.display = 'none';
-    document.getElementById('logo').style.display = 'none';
-}
+    // Hide the search icon and logo when the search input is focused
+    function remove() {
+        document.getElementById('searchicon').style.display = 'none';
+        document.getElementById('logo').style.display = 'none';
+    }
 
-// Show the search icon and logo when the search input loses focus
-function show() {
-    document.getElementById('searchicon').style.display = 'inline';
-    document.getElementById('logo').style.display = 'inline';
-}
+    // Show the search icon and logo when the search input loses focus
+    function show() {
+        document.getElementById('searchicon').style.display = 'inline';
+        document.getElementById('logo').style.display = 'inline';
+    }
 </script>

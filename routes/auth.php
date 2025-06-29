@@ -16,4 +16,4 @@ Route::get('/forgot', [AuthController::class, 'forgotPasswordView'])->name('forg
 
 
 
-Route::get('/logout', [AuthController::class, 'logoutMethod'])->name('logout.method');
+Route::post('/logout', [AuthController::class, 'logoutMethod'])->name('logout');

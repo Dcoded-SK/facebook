@@ -7,10 +7,13 @@ use App\Models\Post;
 use App\Models\Reaction;
 use App\Models\Story;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\returnArgument;
 
 class HomeController extends Controller
 {
     //
+
+
 
     public function home()
     {
@@ -25,11 +28,17 @@ class HomeController extends Controller
 
             ->get();
 
-        $stories = Story::orderBy('created_at', 'desc')->get();
 
 
+        $userId = auth()->id(); // Get current user's ID
+
+        $stories = Story::with(['getUser'])
+            ->orderByRaw("user_id = ? desc", [$userId]) // This puts current user's stories first
+            ->orderBy('created_at', 'desc')
+            ->get();
 
 
+        // dd($stories);
 
         return view('afterlogin.home', compact('posts', 'stories'));
     }

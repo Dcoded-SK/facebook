@@ -11,4 +11,4 @@ Route::prefix("post")->name('post.')->group(function () {
     Route::Post('/reaction', [PostController::class, 'setReaction'])->name('reaction');
 
 
-});
+})->middleware('CheckLogin');
